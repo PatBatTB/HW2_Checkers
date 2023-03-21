@@ -1,23 +1,23 @@
 package com.github.patbattb.domain;
 
 public enum Movement {
-    WHITE(GameDesk.BUSY_CELL_WHITE, GameDesk.BUSY_CELL_BLACK),
-    BLACK(GameDesk.BUSY_CELL_BLACK, GameDesk.BUSY_CELL_WHITE);
+    WHITE(Color.WHITE, Color.BLACK),
+    BLACK(Color.BLACK, Color.WHITE);
 
-    private final char ownCellColor;
-    private final char oppCellColor;
+    private final Color ownColor;
+    private final Color oppColor;
 
-    Movement(char ownCellColor, char oppCellColor) {
-        this.ownCellColor = ownCellColor;
-        this.oppCellColor = oppCellColor;
+    Movement(Color ownColor, Color oppColor) {
+        this.ownColor = ownColor;
+        this.oppColor = oppColor;
     }
 
-    public char getOwnCellColor() {
-        return ownCellColor;
+    public Color getOwnColor() {
+        return ownColor;
     }
 
-    public char getOppCellColor() {
-        return oppCellColor;
+    public Color getOppColor() {
+        return oppColor;
     }
 
     public Movement switchTurn() {

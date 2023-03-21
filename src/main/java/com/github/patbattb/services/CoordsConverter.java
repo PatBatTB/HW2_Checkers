@@ -25,9 +25,11 @@ public final class CoordsConverter {
         }
     }
 
-    public static String getPosition(int x, int y) {
+    public static String getPosition(int x, int y, boolean isQueen) {
+        char letter;
         char digit = (char) (DESK_SIZE - x + UTF_FIRST_DIGIT_INDEX);
-        char letter = (char) (y + UTF_FIRST_LOWERCASE_LETTER_INDEX);
+        if (isQueen) letter = (char) (y + UTF_FIRST_UPPERCASE_LETTER_INDEX);
+        else letter = (char) (y + UTF_FIRST_LOWERCASE_LETTER_INDEX);
         return "" + letter + digit;
     }
 }

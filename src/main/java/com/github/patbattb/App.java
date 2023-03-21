@@ -1,6 +1,8 @@
 package com.github.patbattb;
 
 import java.util.List;
+
+import com.github.patbattb.domain.Color;
 import com.github.patbattb.domain.GameDesk;
 import com.github.patbattb.services.CheckersDeployer;
 import com.github.patbattb.services.DeskPrinter;
@@ -15,10 +17,9 @@ public final class App {
 
         List<String> lines = Reader.read();
         var desk = new GameDesk();
-        CheckersDeployer.deploy(lines.get(0), desk, GameDesk.BUSY_CELL_WHITE);
-        CheckersDeployer.deploy(lines.get(1), desk, GameDesk.BUSY_CELL_BLACK);
+        CheckersDeployer.deploy(lines.get(0), desk, Color.WHITE);
+        CheckersDeployer.deploy(lines.get(1), desk, Color.BLACK);
         GameStep.runSteps(lines, desk);
         DeskPrinter.printResult(desk);
-
     }
 }

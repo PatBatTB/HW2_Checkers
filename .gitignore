@@ -95,3 +95,4 @@ gradle-app.setting
 ## END OF GRADLE ##
 
 .vscode
+/checkstyle.xml

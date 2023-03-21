@@ -1,5 +1,6 @@
 package com.github.patbattb.services.validators;
 
+import com.github.patbattb.domain.Checker;
 import com.github.patbattb.domain.GameDesk;
 import com.github.patbattb.domain.Movement;
 
@@ -18,7 +19,8 @@ public final class NearbyCellsScanner {
                 int x = ownX + i;
                 int y = ownY + j;
                 if (CoordsInFieldValidator.checkOut(x, y)) {
-                    if (desk.getCell(x, y) == movement.getOppCellColor()) {
+                    Checker checker = desk.getCell(x, y).getChecker();
+                    if (checker != null && checker.getColor() == movement.getOppColor()) {
                         NextCellValidator.checkOut(desk, ownX, ownY, x, y);
                     }
                 }

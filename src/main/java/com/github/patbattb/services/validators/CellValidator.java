@@ -1,5 +1,7 @@
 package com.github.patbattb.services.validators;
 
+import com.github.patbattb.domain.Cell;
+import com.github.patbattb.domain.Color;
 import com.github.patbattb.domain.GameDesk;
 /*
 Проверяет валидность хода в клетку.
@@ -8,10 +10,10 @@ import com.github.patbattb.domain.GameDesk;
 public final class CellValidator {
     private CellValidator() { }
     public static void ckeckOut(GameDesk desk, int x, int y) {
-        char cell = desk.getCell(x, y);
-        if (cell == GameDesk.INVALID_CELL) {
+        Cell cell = desk.getCell(x, y);
+        if (cell.getColor() == Color.WHITE) {
             throw new RuntimeException("White cell");
-        } else if (cell != GameDesk.EMPTY_CELL) {
+        } else if (cell.getChecker() != null) {
             throw new RuntimeException("Busy cell");
         }
     }

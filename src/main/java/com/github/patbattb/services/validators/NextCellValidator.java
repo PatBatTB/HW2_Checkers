@@ -1,5 +1,6 @@
 package com.github.patbattb.services.validators;
 
+import com.github.patbattb.domain.Checker;
 import com.github.patbattb.domain.GameDesk;
 
 /*
@@ -14,7 +15,8 @@ public final class NextCellValidator {
         int nextY = 2 * y - ownY;
 
         if (CoordsInFieldValidator.checkOut(nextX, nextY)) {
-            if (desk.getCell(nextX, nextY) == GameDesk.EMPTY_CELL) {
+            Checker checker = desk.getCell(nextX, nextY).getChecker();
+            if (checker == null) {
                 throw new RuntimeException("Invalid move");
             }
         }

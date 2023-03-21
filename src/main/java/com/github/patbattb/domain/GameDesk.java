@@ -1,32 +1,23 @@
 package com.github.patbattb.domain;
 
 public final class GameDesk {
-    private final char[][] playField;
+    private final Cell[][] playField;
     public static final int SIZE = 8;
-    public static final char EMPTY_CELL = 'o';
-    public static final char INVALID_CELL = 'x';
-    public static final char BUSY_CELL_WHITE = 'w';
-    public static final char BUSY_CELL_BLACK = 'b';
 
     public GameDesk() {
-        playField = new char[SIZE][SIZE];
+        playField = new Cell[SIZE][SIZE];
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                if ((i + j) % 2 == 1) playField[i][j] = EMPTY_CELL;
-                else playField[i][j] = INVALID_CELL;
+                if ((i + j) % 2 == 1) playField[i][j] = new Cell(Color.BLACK);
+                else playField[i][j] = new Cell(Color.WHITE);
             }
         }
     }
-
-    public char[][] getPlayField() {
+    public Cell[][] getPlayField() {
         return playField;
     }
 
-    public char getCell(int x, int y) {
+    public Cell getCell(int x, int y) {
         return playField[x][y];
-    }
-
-    public void setCell(int x, int y, char value) {
-        playField[x][y] = value;
     }
 }

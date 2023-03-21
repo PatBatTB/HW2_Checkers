@@ -1,5 +1,6 @@
 package com.github.patbattb.services.turns;
 
+import com.github.patbattb.domain.Cell;
 import com.github.patbattb.domain.GameDesk;
 import com.github.patbattb.domain.Movement;
 import com.github.patbattb.services.CoordsConverter;
@@ -26,9 +27,10 @@ public final class MoveTurn {
         CellValidator.ckeckOut(desk, endX, endY);
         FightMoveValidator.checkOut(desk, movement);
 
-        desk.setCell(startX, startY, GameDesk.EMPTY_CELL);
-        desk.setCell(endX, endY, movement.getOwnCellColor());
+        Cell startCell = desk.getCell(startX, startY);
+        Cell endCell = desk.getCell(endX, endY);
 
-
+        endCell.setChecker(startCell.getChecker());
+        startCell.setChecker(null);
     }
 }

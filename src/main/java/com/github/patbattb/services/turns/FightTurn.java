@@ -1,5 +1,7 @@
 package com.github.patbattb.services.turns;
 
+import com.github.patbattb.domain.Cell;
+import com.github.patbattb.domain.Checker;
 import com.github.patbattb.domain.GameDesk;
 import com.github.patbattb.domain.Movement;
 import com.github.patbattb.services.CoordsConverter;
@@ -26,13 +28,18 @@ public final class FightTurn {
             int oppX = (startX + endX) / 2;
             int oppY = (startY + endY) / 2;
 
-            if (desk.getCell(oppX, oppY) != movement.getOppCellColor()) {
+            Checker checker = desk.getCell(oppX, oppY).getChecker();
+            if (checker.getColor() != movement.getOppColor()) {
                 throw new RuntimeException("No opponent checker on the fight line");
             }
 
-            desk.setCell(startX, startY, GameDesk.EMPTY_CELL);
-            desk.setCell(oppX, oppY, GameDesk.EMPTY_CELL);
-            desk.setCell(endX, endY, movement.getOwnCellColor());
+            Cell startCell = desk.getCell(startX, startY);
+            Cell oppCell = desk.getCell(oppX, oppY);
+            Cell endCell = desk.getCell(endX, endY);
+
+            endCell.setChecker(startCell.getChecker());
+            startCell.setChecker(null);
+            oppCell.setChecker(null);
 
             startX = endX;
             startY = endY;
