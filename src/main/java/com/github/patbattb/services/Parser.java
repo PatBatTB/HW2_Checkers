@@ -12,7 +12,7 @@ public final class Parser {
  */
     public static List<String> parseStartingPositions(String line) {
         List<String> positions = new ArrayList<>();
-        Pattern pattern = Pattern.compile("[a-zA-Z][0-9]");
+        Pattern pattern = Pattern.compile("(?<=(^|\\s))[a-zA-Z][0-9]");
         Matcher matcher = pattern.matcher(line);
         while (matcher.find()) {
             positions.add(matcher.group());
@@ -39,7 +39,7 @@ public final class Parser {
  */
     public static List<String> parseOneTurn(String step) {
         List<String> coordinates = new ArrayList<>();
-        Pattern pattern = Pattern.compile("\\w+");
+        Pattern pattern = Pattern.compile("(?<=(^|[:-]))\\w{2}(?=($|[:-]))");
         Matcher matcher = pattern.matcher(step);
         while (matcher.find()) {
             coordinates.add(matcher.group());
