@@ -15,20 +15,38 @@ public final class DeskPrinter {
         for (int i = 0; i < GameDesk.SIZE; i++) {
             for (int j = GameDesk.SIZE - 1; j >= 0; j--) {
                 Checker checker = desk.getCell(j, i).getChecker();
-                if (checker != null && checker.getColor() == Color.WHITE) {
-                    System.out.print(CoordsConverter.getPosition(j, i, checker.isQueen()) + " ");
+                if (checker != null && checker.getColor() == Color.WHITE && checker.isQueen()) {
+                    System.out.print(CoordsConverter.getPosition(j, i, true) + " ");
                 }
             }
         }
-        System.out.println();
+
         for (int i = 0; i < GameDesk.SIZE; i++) {
             for (int j = GameDesk.SIZE - 1; j >= 0; j--) {
                 Checker checker = desk.getCell(j, i).getChecker();
-                if (checker != null && checker.getColor() == Color.BLACK) {
-                    System.out.print(CoordsConverter.getPosition(j, i, checker.isQueen()) + " ");
+                if (checker != null && checker.getColor() == Color.WHITE && !checker.isQueen()) {
+                    System.out.print(CoordsConverter.getPosition(j, i, false) + " ");
                 }
             }
         }
         System.out.println();
+
+        for (int i = 0; i < GameDesk.SIZE; i++) {
+            for (int j = GameDesk.SIZE - 1; j >= 0; j--) {
+                Checker checker = desk.getCell(j, i).getChecker();
+                if (checker != null && checker.getColor() == Color.BLACK && checker.isQueen()) {
+                    System.out.print(CoordsConverter.getPosition(j, i, true) + " ");
+                }
+            }
+        }
+
+        for (int i = 0; i < GameDesk.SIZE; i++) {
+            for (int j = GameDesk.SIZE - 1; j >= 0; j--) {
+                Checker checker = desk.getCell(j, i).getChecker();
+                if (checker != null && checker.getColor() == Color.BLACK && !checker.isQueen()) {
+                    System.out.print(CoordsConverter.getPosition(j, i, false) + " ");
+                }
+            }
+        }
     }
 }

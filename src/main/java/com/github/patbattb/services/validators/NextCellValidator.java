@@ -2,6 +2,7 @@ package com.github.patbattb.services.validators;
 
 import com.github.patbattb.domain.Checker;
 import com.github.patbattb.domain.GameDesk;
+import com.github.patbattb.exceptions.InvalidMoveException;
 
 /*
 Принимает кооординату активной шашки и координату радом стоящей шашки оппонента.
@@ -10,14 +11,12 @@ import com.github.patbattb.domain.GameDesk;
 public final class NextCellValidator {
     private NextCellValidator() { }
 
-    public static void checkOut(GameDesk desk, int ownX, int ownY, int x, int y) {
-        int nextX = 2 * x - ownX;
-        int nextY = 2 * y - ownY;
+    public static void checkOut(GameDesk desk, int x, int y) throws InvalidMoveException {
 
-        if (CoordsInFieldValidator.checkOut(nextX, nextY)) {
-            Checker checker = desk.getCell(nextX, nextY).getChecker();
+        if (CoordsInFieldValidator.checkOut(x, y)) {
+            Checker checker = desk.getCell(x, y).getChecker();
             if (checker == null) {
-                throw new RuntimeException("Invalid move");
+                throw new InvalidMoveException();
             }
         }
     }
